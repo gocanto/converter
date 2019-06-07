@@ -1,9 +1,7 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__.'/app/') // only app directory checked
-    ->exclude('Alitrip') // skip, for it contains Alitrip proprietary code (TOP)
-;
+    ->in(__DIR__.'/src/');
 
 return PhpCsFixer\Config::create()
     ->setFinder($finder)

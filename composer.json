@@ -49,6 +49,18 @@
     }
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "optimize-autoloader": true
+  },
+  "scripts" : {
+    "test": [
+      "php vendor/bin/phpunit --testsuite=Unit"
+    ],
+    "analyse": [
+      "(composer staged-diff | cat | exec 'vendor/bin/grumphp' 'git:pre-commit' '--skip-success-output' '--ansi')"
+    ],
+    "staged-diff": [
+      "git -c diff.mnemonicprefix=false --no-pager diff -r -p -m -M --full-index --no-color --staged "
+    ]
   }
 }
