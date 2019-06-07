@@ -6,3 +6,4 @@ yarn-error.log
 .phpunit.result.cache
 composer.lock
 infection.log
+.php_cs.cache
