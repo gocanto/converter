@@ -25,6 +25,9 @@ class Converter
     /** @var CurrenciesRepositoryInterface */
     private $currencies;
 
+    /**
+     * @param CurrenciesRepositoryInterface $currencies
+     */
     public function __construct(CurrenciesRepositoryInterface $currencies)
     {
         $this->currencies = $currencies;
