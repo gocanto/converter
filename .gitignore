@@ -5,3 +5,8 @@ vendor
 yarn-error.log
 .phpunit.result.cache
 composer.lock
+infection.log
+.grumphp.yml
+.phpmd.xml
+.phpcs.xml
+psalm.xml
