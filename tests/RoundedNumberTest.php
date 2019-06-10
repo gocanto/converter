@@ -10,7 +10,9 @@
 
 namespace Gocanto\Converter\Tests;
 
+use Gocanto\Converter\Price;
 use Gocanto\Converter\RoundedNumber;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class RoundedNumberTest extends TestCase
@@ -52,7 +54,7 @@ class RoundedNumberTest extends TestCase
     }
 
     /** @test */
-    public function it_test_the_test_that_doesnt_work()
+    public function it_parses_the_right_integer_number()
     {
         $number = RoundedNumber::make('1');
 
@@ -63,5 +65,13 @@ class RoundedNumberTest extends TestCase
         $this->assertSame(4, $number->getPrecision());
         $this->assertSame(PHP_ROUND_HALF_UP, $number->getMode());
         $this->assertTrue($number->isInteger());
+    }
+
+    /** @test */
+    public function it_does_not_allow_invalid_numbers()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        RoundedNumber::make(new Price(10, 'SGD'));
     }
 }
