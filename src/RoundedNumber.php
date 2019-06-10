@@ -17,7 +17,7 @@ final class RoundedNumber
 {
     public const DEFAULT_ROUNDING_MODE = PHP_ROUND_HALF_UP;
 
-    /** @var integer */
+    /** @var int */
     private $number;
     /** @var string */
     private $decimals;
@@ -49,6 +49,24 @@ final class RoundedNumber
     }
 
     /**
+     * @param string $number
+     * @return RoundedNumber
+     */
+    private static function fromString(string $number) : RoundedNumber
+    {
+        $values = strpos($number, '.');
+
+        if ($values === false) {
+            return new static((int) $number, '');
+        }
+
+        return new static(
+            (int) substr($number, 0, $values),
+            (string) rtrim(substr($number, $values + 1), '0')
+        );
+    }
+
+    /**
      * @param int $precision
      * @return RoundedNumber
      */
@@ -70,24 +88,6 @@ final class RoundedNumber
         $number->mode = $mode;
 
         return $number;
-    }
-
-    /**
-     * @param string $number
-     * @return RoundedNumber
-     */
-    private static function fromString(string $number) : RoundedNumber
-    {
-        $values = strpos($number, '.');
-
-        if ($values === false) {
-            return new static((int) $number, '');
-        }
-
-        return new static(
-            (int) substr($number, 0, $values),
-            (string) rtrim(substr($number, $values + 1), '0')
-        );
     }
 
     /**
@@ -115,9 +115,9 @@ final class RoundedNumber
      */
     public function getRoundedNumber() : float
     {
-        $decimals = $this->getDecimals()  === '' ? '' : '.' . $this->getDecimals();
+        $decimals = $this->getDecimals() === '' ? '' : '.' . $this->getDecimals();
 
-        $number = (float) $this->getNumber() . $decimals;
+        $number = (float) ($this->getNumber() . $decimals);
 
         return round(
             $number,
