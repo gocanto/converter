@@ -7,3 +7,4 @@ yarn-error.log
 composer.lock
 infection.log
 .php_cs.cache
+public
