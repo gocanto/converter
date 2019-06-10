@@ -16,13 +16,14 @@ use InvalidArgumentException;
 final class RoundedNumber
 {
     public const DEFAULT_ROUNDING_MODE = PHP_ROUND_HALF_UP;
+    public const DEFAULT_PRECISION = 4;
 
     /** @var int */
     private $number;
     /** @var string */
     private $decimals;
     /** @var int */
-    private $precision = 4;
+    private $precision;
     /** @var int */
     private $mode;
 
@@ -155,7 +156,7 @@ final class RoundedNumber
      */
     public function getPrecision(): int
     {
-        return $this->precision;
+        return $this->precision === null ? static::DEFAULT_PRECISION : $this->precision;
     }
 
     /**

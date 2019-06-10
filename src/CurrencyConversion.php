@@ -69,13 +69,15 @@ final class CurrencyConversion
     }
 
     /**
+     * @param int $precision
+     * @param int $mode
      * @return RoundedNumber
      */
-    public function getAmount() : RoundedNumber
+    public function getAmount(int $precision = RoundedNumber::DEFAULT_PRECISION, int $mode = RoundedNumber::DEFAULT_ROUNDING_MODE) : RoundedNumber
     {
-        $result = $this->number->getRoundedNumber() * $this->rate;
+        $result = $this->number->getRoundedNumber() * $this->getRate();
 
-        return RoundedNumber::make($result);
+        return RoundedNumber::make($result)->withMode($mode)->withPrecision($precision);
     }
 
     /**
