@@ -13,8 +13,8 @@ namespace Gocanto\Converter;
 
 class CurrencyConversion
 {
-    /** @var float */
-    private $amount;
+    /** @var RoundedNumber */
+    private $number;
     /** @var string */
     private $from;
     /** @var string */
@@ -23,25 +23,25 @@ class CurrencyConversion
     private $rate;
 
     /**
-     * @param float $amount
+     * @param RoundedNumber $number
      * @param string $from
      * @param string $to
      * @param float $rate
      */
-    public function __construct(float $amount, string $from, string $to, float $rate)
+    public function __construct(RoundedNumber $number, string $from, string $to, float $rate)
     {
-        $this->amount = $amount;
+        $this->number = $number;
         $this->from = $from;
         $this->to = $to;
         $this->rate = $rate;
     }
 
     /**
-     * @return float
+     * @return RoundedNumber
      */
-    public function getBaseAmount() : float
+    public function getBaseAmount() : RoundedNumber
     {
-        return $this->amount;
+        return $this->number;
     }
 
     /**
@@ -69,11 +69,13 @@ class CurrencyConversion
     }
 
     /**
-     * @return float
+     * @return RoundedNumber
      */
-    public function getAmount() : float
+    public function getAmount() : RoundedNumber
     {
-        return $this->amount * $this->rate;
+        $result = $this->number->getRoundedNumber() * $this->rate;
+
+        return RoundedNumber::make($result);
     }
 
     /**
@@ -81,6 +83,6 @@ class CurrencyConversion
      */
     public function getPrice() : Price
     {
-        return new Price($this->getAmount(), $this->to);
+        return new Price($this->getAmount()->getRoundedNumber(), $this->to);
     }
 }

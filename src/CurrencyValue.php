@@ -11,7 +11,7 @@
 
 namespace Gocanto\Converter;
 
-class CurrencyValue
+final class CurrencyValue
 {
     /** @var string */
     private $name;

@@ -20,7 +20,7 @@ class Converter
 
     /** @var string */
     private $currencyCode;
-    /** @var float */
+    /** @var RoundedNumber */
     private $amount;
     /** @var CurrenciesRepositoryInterface */
     private $currencies;
@@ -46,27 +46,13 @@ class Converter
     }
 
     /**
-     * @param float $amount
+     * @param RoundedNumber $amount
      * @return Converter
      */
-    public function usingAmount(float $amount) : Converter
+    public function usingAmount(RoundedNumber $amount) : Converter
     {
         $converter = clone $this;
         $converter->amount = $amount;
-
-        return $converter;
-    }
-
-    /**
-     * @param Price $price
-     * @return Converter
-     */
-    public function usingPrice(Price $price) : Converter
-    {
-        $converter = clone $this;
-
-        $converter->currencyCode = $price->getCurrencyCode();
-        $converter->amount = $price->getAmount();
 
         return $converter;
     }
@@ -99,9 +85,9 @@ class Converter
     }
 
     /**
-     * @return float
+     * @return RoundedNumber
      */
-    public function getAmount(): float
+    public function getAmount(): RoundedNumber
     {
         return $this->amount;
     }
