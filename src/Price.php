@@ -18,7 +18,7 @@ class Price
     /** @var float */
     private $amount;
     /** @var int */
-    protected $precision = 2;
+    private $precision = 2;
 
     /**
      * @param float $amount
@@ -28,18 +28,6 @@ class Price
     {
         $this->amount = $amount;
         $this->currencyCode = $currencyCode;
-    }
-
-    /**
-     * @param int $precision
-     * @return Price
-     */
-    public function withPrecision(int $precision) : Price
-    {
-        $newPrice = clone $this;
-        $newPrice->precision = $precision;
-
-        return $newPrice;
     }
 
     /**
@@ -66,13 +54,5 @@ class Price
         $amount = number_format($this->getAmount(), $this->precision);
 
         return $this->getCurrencyCode() . ' ' . $amount;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->toString();
     }
 }

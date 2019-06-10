@@ -65,6 +65,7 @@ class ConverterTest extends TestCase
             ->usingCurrency('SGD')
             ->convertTo('USD');
 
+        $this->assertInstanceOf(RoundedNumber::class, $conversion->getAmount());
         $this->assertSame(0.731271, $conversion->getRate());
         $this->assertSame('SGD', $conversion->getFrom());
         $this->assertSame('USD', $conversion->getTo());
