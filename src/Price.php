@@ -11,7 +11,7 @@
 
 namespace Gocanto\Converter;
 
-class Price
+final class Price
 {
     /** @var string ISO 4217 3-letter currency code */
     private $currencyCode;

@@ -11,7 +11,7 @@
 
 namespace Gocanto\Converter;
 
-class CurrencyConversion
+final class CurrencyConversion
 {
     /** @var RoundedNumber */
     private $number;
