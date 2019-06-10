@@ -39,7 +39,7 @@ class ConverterTest extends TestCase
     /** @test */
     public function it_accepts_the_evaluating_currency()
     {
-        $newConverter = $this->converter->usingCurrency('USD');
+        $newConverter = $this->converter->withCurrency('USD');
 
         $this->assertNotEquals($this->converter, $newConverter);
         $this->assertEquals('USD', $newConverter->getCurrencyCode());
@@ -48,7 +48,7 @@ class ConverterTest extends TestCase
     /** @test */
     public function it_accepts_the_evaluating_amount()
     {
-        $newConverter = $this->converter->usingAmount(RoundedNumber::make(10));
+        $newConverter = $this->converter->withAmount(RoundedNumber::make(10));
 
         $this->assertNotEquals($this->converter, $newConverter);
         $this->assertSame(10, $newConverter->getAmount()->getNumber());
@@ -61,8 +61,8 @@ class ConverterTest extends TestCase
         $this->currencies->shouldReceive('getCurrentRate')->once()->with('SGD')->andReturn($currency);
 
         $conversion = $this->converter
-            ->usingAmount(RoundedNumber::make(10))
-            ->usingCurrency('SGD')
+            ->withAmount(RoundedNumber::make(10))
+            ->withCurrency('SGD')
             ->convertTo('USD');
 
         $this->assertInstanceOf(RoundedNumber::class, $conversion->getAmount());

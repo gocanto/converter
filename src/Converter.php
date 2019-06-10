@@ -37,7 +37,7 @@ class Converter
      * @param string $currency
      * @return Converter
      */
-    public function usingCurrency(string $currency) : Converter
+    public function withCurrency(string $currency) : Converter
     {
         $converter = clone $this;
         $converter->currencyCode = $currency;
@@ -49,7 +49,7 @@ class Converter
      * @param RoundedNumber $amount
      * @return Converter
      */
-    public function usingAmount(RoundedNumber $amount) : Converter
+    public function withAmount(RoundedNumber $amount) : Converter
     {
         $converter = clone $this;
         $converter->amount = $amount;
