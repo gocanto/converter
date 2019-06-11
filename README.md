@@ -7,8 +7,16 @@ The converter library is a `immutable` drop in currencies converter that does no
 
 In order for it to work, you will have to pass your repository data look up to pull in a valid information to operate on. This repository has to implement the interface `CurrenciesRepositoryInterface` [shipped](https://github.com/gocanto/converter/blob/master/src/Interfaces/CurrenciesRepositoryInterface.php) with the library  
 
+## Installation
 
-## Working on your interface implementation
+This library uses [Composer](https://getcomposer.org) to manage its dependencies. So, before using it, make sure you have it installed in your machine. 
+Once you have done this, you will be able to pull this library in by typing the following command in your terminal.
+
+```
+composer install gocanto/converter
+```
+    
+## Data layer implementation
 
 First of all, you will have to create a repository to query either your database or any other data resources where you keep your application currencies information. [see example](https://github.com/gocanto/converter/blob/master/src/Examples/CurrenciesRepositoryExample.php)
 
