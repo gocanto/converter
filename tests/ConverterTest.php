@@ -33,7 +33,7 @@ class ConverterTest extends TestCase
     /** @test */
     public function it_returns_the_valid_version()
     {
-        $this->assertEquals('0.0.1', $this->converter->getVersion());
+        $this->assertEquals('1.0.0', $this->converter->getVersion());
     }
 
     /** @test */
