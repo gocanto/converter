@@ -9,7 +9,7 @@ before_install:
   - travis_retry composer self-update
 
 script:
-  - vendor/bin/phpunit
+  - ./vendor/bin/phpunit --testsuit=Unit
 
 branches:
   only:
