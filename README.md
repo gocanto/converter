@@ -4,7 +4,7 @@
 <a href="https://packagist.org/packages/gocanto/converter"><img src="https://img.shields.io/github/release/gocanto/converter.svg?style=flat-square" alt="Latest Stable Version"></a>
 <a href="https://travis-ci.org/gocanto/converter"><img src="https://img.shields.io/travis/gocanto/converter/master.svg?style=flat-square" alt="Build status"></a>
 
-The converter library is a `immutable` drop in currencies converter that does not have concerns were a given currency value came from. 
+The converter library is a `immutable` drop in currencies converter that's data-agnostic.. 
 
 In order for it to work, you will have to pass your repository data look up to pull in a valid information to operate on. This repository has to implement the interface `CurrenciesRepositoryInterface` [shipped](https://github.com/gocanto/converter/blob/master/src/Interfaces/CurrenciesRepositoryInterface.php) with the library  
 
