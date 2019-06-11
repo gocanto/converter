@@ -2,6 +2,7 @@
 
 <a href="https://packagist.org/packages/gocanto/converter"><img src="https://img.shields.io/packagist/dt/gocanto/converter.svg?style=flat-square" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/gocanto/converter"><img src="https://img.shields.io/github/release/gocanto/converter.svg?style=flat-square" alt="Latest Stable Version"></a>
+<a href="https://travis-ci.org/gocanto/converter"><img src="https://img.shields.io/travis/gocanto/converter/master.svg?style=flat-square" alt="Build status"></a>
 
 The converter library is a `immutable` drop in currencies converter that does not have concerns were a given currency value came from. 
 
