@@ -13,12 +13,12 @@ This library uses [Composer](https://getcomposer.org) to manage its dependencies
 Once you have done this, you will be able to pull this library in by typing the following command in your terminal.
 
 ```
-composer install gocanto/converter
+composer require gocanto/converter
 ```
     
 ## Data layer implementation
 
-First of all, you will have to create a repository to query either your database or any other data resources where you keep your application currencies information. [see example](https://github.com/gocanto/converter/blob/master/src/Examples/CurrenciesRepositoryExample.php)
+First of all, you will have to create a repository to query either your database or any other data resources where you keep your application currencies information. [see example](https://github.com/gocanto/converter/blob/master/examples/CurrenciesRepositoryExample.php)
 
 Second of all, you will have to new up the converter passing an instance of the mentioned interface repository implementation. Like so:
 
