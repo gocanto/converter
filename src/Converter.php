@@ -16,7 +16,7 @@ use Gocanto\Converter\Interfaces\CurrenciesRepositoryInterface;
 class Converter
 {
     /** @var string */
-    private const VERSION = '0.0.1';
+    private const VERSION = '1.0.0';
 
     /** @var string */
     private $currencyCode;
