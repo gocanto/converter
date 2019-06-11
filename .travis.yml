@@ -15,4 +15,4 @@ before_install:
 
 install: travis_retry composer install --no-interaction --prefer-dist --no-suggest
 
-script: vendor/bin/phpunit --verbose
+script: ./vendor/bin/phpunit --testsuit=Unit
