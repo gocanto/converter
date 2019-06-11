@@ -39,7 +39,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Gocanto\\Converter\\": "src"
+      "Gocanto\\Converter\\": "src",
+      "Gocanto\\Converter\\Examples\\": "examples"
     }
   },
   "autoload-dev": {
