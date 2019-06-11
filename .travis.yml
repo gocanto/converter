@@ -13,7 +13,7 @@ script:
   - ./vendor/bin/phpunit --testsuit=Unit
 
 install:
-  - travis_retry composer update --prefer-source
+  - travis_retry composer update --prefer-source --prefer-lowest --no-interaction --verbose
 
 branches:
   only:
