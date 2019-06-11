@@ -3,13 +3,16 @@
   "name": "gocanto/converter",
   "homepage": "https://github.com/gocanto/converter",
   "type": "php-bundle",
-  "description": "A simple currency converter library.",
+  "description": "Immutable PHP currency converter that's data-agnostic.",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "keywords": [
     "php",
     "currency",
-    "converter"
+    "converter",
+    "immutable",
+    "data",
+    "agnostic"
   ],
   "authors": [
     {
