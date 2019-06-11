@@ -15,25 +15,21 @@ final class CurrencyConversion
 {
     /** @var RoundedNumber */
     private $baseAmount;
+    /** @var CurrencyValue */
+    private $fromCurrency;
     /** @var string */
-    private $from;
-    /** @var string */
-    private $to;
-    /** @var float */
-    private $rate;
+    private $toCurrency;
 
     /**
      * @param RoundedNumber $number
-     * @param string $from
-     * @param string $to
-     * @param float $rate
+     * @param CurrencyValue $fromCurrency
+     * @param string $toCurrency
      */
-    public function __construct(RoundedNumber $number, string $from, string $to, float $rate)
+    public function __construct(RoundedNumber $number, CurrencyValue $fromCurrency, string $toCurrency)
     {
         $this->baseAmount = $number;
-        $this->from = $from;
-        $this->to = $to;
-        $this->rate = $rate;
+        $this->fromCurrency = $fromCurrency;
+        $this->toCurrency = $toCurrency;
     }
 
     /**
@@ -45,11 +41,11 @@ final class CurrencyConversion
     }
 
     /**
-     * @return string
+     * @return CurrencyValue
      */
-    public function getFrom() : string
+    public function getFrom() : CurrencyValue
     {
-        return $this->from;
+        return $this->fromCurrency;
     }
 
     /**
@@ -57,15 +53,7 @@ final class CurrencyConversion
      */
     public function getTo() : string
     {
-        return $this->to;
-    }
-
-    /**
-     * @return float
-     */
-    public function getRate() : float
-    {
-        return $this->rate;
+        return $this->toCurrency;
     }
 
     /**
@@ -75,7 +63,7 @@ final class CurrencyConversion
      */
     public function getAmount(int $precision = RoundedNumber::DEFAULT_PRECISION, int $mode = RoundedNumber::DEFAULT_ROUNDING_MODE) : RoundedNumber
     {
-        $result = $this->getBaseAmount()->getRoundedAmount() * $this->getRate();
+        $result = $this->getBaseAmount()->getRoundedAmount() * $this->getFrom()->getRate();
 
         return RoundedNumber::make($result)->withMode($mode)->withPrecision($precision);
     }

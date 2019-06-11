@@ -58,14 +58,14 @@ class Converter
     }
 
     /**
-     * @param string $currencyCode
+     * @param string $toCurrency
      * @return CurrencyConversion
      */
-    public function convertTo(string $currencyCode) : CurrencyConversion
+    public function convertTo(string $toCurrency) : CurrencyConversion
     {
-        $currency = $this->currencies->getCurrentRate($this->getCurrencyCode());
+        $fromCurrency = $this->currencies->getCurrentRate($this->getCurrencyCode());
 
-        return new CurrencyConversion($this->getAmount(), $this->getCurrencyCode(), $currencyCode, $currency->getRate());
+        return new CurrencyConversion($this->getAmount(), $fromCurrency, $toCurrency);
     }
 
     /**

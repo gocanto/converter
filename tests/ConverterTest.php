@@ -57,7 +57,7 @@ class ConverterTest extends TestCase
     /** @test */
     public function it_properly_converts_the_given_amount()
     {
-        $currency = new CurrencyValue('U.S. Dollars', 'USD', '$', 0.731271);
+        $currency = new CurrencyValue('Singapore Dollars', 'SGD', 'SGD$', 0.732565);
         $this->currencies->shouldReceive('getCurrentRate')->once()->with('SGD')->andReturn($currency);
 
         $conversion = $this->converter
@@ -67,14 +67,15 @@ class ConverterTest extends TestCase
 
         $this->assertInstanceOf(RoundedNumber::class, $conversion->getBaseAmount());
         $this->assertInstanceOf(RoundedNumber::class, $conversion->getAmount());
+        $this->assertInstanceOf(CurrencyValue::class, $conversion->getFrom());
 
-        $this->assertSame(0.731271, $conversion->getRate());
-        $this->assertSame('SGD', $conversion->getFrom());
+        $this->assertSame(0.732565, $conversion->getFrom()->getRate());
+        $this->assertSame('SGD', $conversion->getFrom()->getCode());
         $this->assertSame('USD', $conversion->getTo());
 
         $amount = $conversion->getAmount();
-        $this->assertSame('7.3127', $amount->toString());
-        $this->assertSame(7.3127, $amount->getRoundedAmount());
+        $this->assertSame('7.3257', $amount->toString());
+        $this->assertSame(7.3257, $amount->getRoundedAmount());
 
         $baseAmount = $conversion->getBaseAmount();
         $this->assertSame('10', $baseAmount->toString());
@@ -82,7 +83,7 @@ class ConverterTest extends TestCase
 
         $formattedAmount = $conversion->getFormattedAmount();
         $this->assertSame('USD', $formattedAmount->getCurrencyCode());
-        $this->assertSame(7.3127, $formattedAmount->getAmount()->getRoundedAmount());
-        $this->assertEquals('USD 7.3127', $formattedAmount->toString());
+        $this->assertSame(7.3257, $formattedAmount->getAmount()->getRoundedAmount());
+        $this->assertEquals('USD 7.3257', $formattedAmount->toString());
     }
 }
