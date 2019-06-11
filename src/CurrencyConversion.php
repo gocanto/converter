@@ -14,7 +14,7 @@ namespace Gocanto\Converter;
 final class CurrencyConversion
 {
     /** @var RoundedNumber */
-    private $number;
+    private $baseAmount;
     /** @var string */
     private $from;
     /** @var string */
@@ -30,7 +30,7 @@ final class CurrencyConversion
      */
     public function __construct(RoundedNumber $number, string $from, string $to, float $rate)
     {
-        $this->number = $number;
+        $this->baseAmount = $number;
         $this->from = $from;
         $this->to = $to;
         $this->rate = $rate;
@@ -41,7 +41,7 @@ final class CurrencyConversion
      */
     public function getBaseAmount() : RoundedNumber
     {
-        return $this->number;
+        return $this->baseAmount;
     }
 
     /**
@@ -75,16 +75,19 @@ final class CurrencyConversion
      */
     public function getAmount(int $precision = RoundedNumber::DEFAULT_PRECISION, int $mode = RoundedNumber::DEFAULT_ROUNDING_MODE) : RoundedNumber
     {
-        $result = $this->number->getRoundedNumber() * $this->getRate();
+        $result = $this->getBaseAmount()->getRoundedAmount() * $this->getRate();
 
         return RoundedNumber::make($result)->withMode($mode)->withPrecision($precision);
     }
 
     /**
-     * @return Amount
+     * @return FormattedAmount
      */
-    public function getPrice() : Amount
+    public function getFormattedAmount() : FormattedAmount
     {
-        return new Amount($this->getAmount()->getRoundedNumber(), $this->to);
+        return new FormattedAmount(
+            $this->getAmount(),
+            $this->getTo()
+        );
     }
 }

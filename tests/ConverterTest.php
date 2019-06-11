@@ -67,14 +67,22 @@ class ConverterTest extends TestCase
 
         $this->assertInstanceOf(RoundedNumber::class, $conversion->getBaseAmount());
         $this->assertInstanceOf(RoundedNumber::class, $conversion->getAmount());
+
         $this->assertSame(0.731271, $conversion->getRate());
         $this->assertSame('SGD', $conversion->getFrom());
         $this->assertSame('USD', $conversion->getTo());
-        $this->assertSame('10', $conversion->getBaseAmount()->toString());
-        $this->assertSame('7.3127', $conversion->getAmount()->toString());
-        $this->assertSame(7.3127, $conversion->getAmount()->getRoundedNumber());
-        $this->assertSame(10.0, $conversion->getBaseAmount()->getRoundedNumber());
-        $this->assertSame('USD', $conversion->getPrice()->getCurrencyCode());
-        $this->assertSame(7.3127, $conversion->getPrice()->getAmount());
+
+        $amount = $conversion->getAmount();
+        $this->assertSame('7.3127', $amount->toString());
+        $this->assertSame(7.3127, $amount->getRoundedAmount());
+
+        $baseAmount = $conversion->getBaseAmount();
+        $this->assertSame('10', $baseAmount->toString());
+        $this->assertSame(10.0, $baseAmount->getRoundedAmount());
+
+        $formattedAmount = $conversion->getFormattedAmount();
+        $this->assertSame('USD', $formattedAmount->getCurrencyCode());
+        $this->assertSame(7.3127, $formattedAmount->getAmount()->getRoundedAmount());
+        $this->assertEquals('USD 7.3127', $formattedAmount->toString());
     }
 }

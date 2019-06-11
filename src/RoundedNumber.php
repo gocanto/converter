@@ -100,7 +100,7 @@ final class RoundedNumber
             return (string) $this->getNumber();
         }
 
-        return (string) $this->getRoundedNumber();
+        return (string) $this->getRoundedAmount();
     }
 
     /**
@@ -114,14 +114,20 @@ final class RoundedNumber
     /**
      * @return float
      */
-    public function getRoundedNumber() : float
+    public function getAmount() : float
     {
         $decimals = $this->getDecimals() === '' ? '' : '.' . $this->getDecimals();
 
-        $number = (float) ($this->getNumber() . $decimals);
+        return (float) ($this->getNumber() . $decimals);
+    }
 
+    /**
+     * @return float
+     */
+    public function getRoundedAmount() : float
+    {
         return round(
-            $number,
+            $this->getAmount(),
             $this->isDecimal() ? $this->getPrecision() : 0,
             $this->isDecimal() ? $this->getMode() : static::DEFAULT_ROUNDING_MODE
         );

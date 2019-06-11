@@ -10,7 +10,7 @@
 
 namespace Gocanto\Converter\Tests;
 
-use Gocanto\Converter\Amount;
+use Gocanto\Converter\FormattedAmount;
 use Gocanto\Converter\RoundedNumber;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -23,7 +23,7 @@ class RoundedNumberTest extends TestCase
         $number = RoundedNumber::make(1.3657636576);
 
         $this->assertSame('1.3658', $number->toString());
-        $this->assertSame(1.3658, $number->getRoundedNumber());
+        $this->assertSame(1.3658, $number->getRoundedAmount());
         $this->assertSame($number->getNumber(), 1);
         $this->assertSame($number->getDecimals(), '3657636576');
         $this->assertSame(4, $number->getPrecision());
@@ -37,7 +37,7 @@ class RoundedNumberTest extends TestCase
         $number = RoundedNumber::make('1.3657636576');
 
         $this->assertSame('1.3658', $number->toString());
-        $this->assertSame(1.3658, $number->getRoundedNumber());
+        $this->assertSame(1.3658, $number->getRoundedAmount());
         $this->assertSame($number->getNumber(), 1);
         $this->assertSame($number->getDecimals(), '3657636576');
         $this->assertSame(4, $number->getPrecision());
@@ -59,7 +59,7 @@ class RoundedNumberTest extends TestCase
         $number = RoundedNumber::make('1');
 
         $this->assertSame('1', $number->toString());
-        $this->assertSame(1.0, $number->getRoundedNumber());
+        $this->assertSame(1.0, $number->getRoundedAmount());
         $this->assertSame($number->getNumber(), 1);
         $this->assertSame($number->getDecimals(), '');
         $this->assertSame(4, $number->getPrecision());
@@ -72,6 +72,6 @@ class RoundedNumberTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        RoundedNumber::make(new Amount(10, 'SGD'));
+        RoundedNumber::make(new FormattedAmount(10, 'SGD'));
     }
 }
