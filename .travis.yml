@@ -1,18 +1,20 @@
+sudo: required
+
 language: php
 
 php:
   - 7.2
 
-dist: trusty
-sudo: required
-
-before_script:
-  - composer self-update
-  - composer clear-cache
-
 before_install:
-  - if [[ $TRAVIS_PHP_VERSION != 7.2 ]] ; then phpenv config-rm xdebug.ini; fi
+  - sudo apt-get update
+  - travis_retry composer self-update
 
-install: travis_retry composer install --no-interaction --prefer-dist --no-suggest
+install:
+  - travis_retry composer update --prefer-source --prefer-lowest
 
-script: ./vendor/bin/phpunit --testsuit=Unit
+script:
+  - vendor/bin/phpunit
+
+branches:
+  only:
+    - master
