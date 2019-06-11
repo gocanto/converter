@@ -10,7 +10,7 @@
 
 namespace Gocanto\Converter\Tests;
 
-use Gocanto\Converter\Price;
+use Gocanto\Converter\Amount;
 use PHPUnit\Framework\TestCase;
 
 class PriceTest extends TestCase
@@ -18,7 +18,7 @@ class PriceTest extends TestCase
     /** @test */
     public function it_build_a_valid_price_value()
     {
-        $price = new Price(10, 'USD');
+        $price = new Amount(10, 'USD');
 
         $this->assertEquals('USD 10.00', $price->toString());
         $this->assertEquals('USD', $price->getCurrencyCode());

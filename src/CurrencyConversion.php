@@ -81,10 +81,10 @@ final class CurrencyConversion
     }
 
     /**
-     * @return Price
+     * @return Amount
      */
-    public function getPrice() : Price
+    public function getPrice() : Amount
     {
-        return new Price($this->getAmount()->getRoundedNumber(), $this->to);
+        return new Amount($this->getAmount()->getRoundedNumber(), $this->to);
     }
 }

@@ -10,7 +10,7 @@
 
 namespace Gocanto\Converter\Tests;
 
-use Gocanto\Converter\Price;
+use Gocanto\Converter\Amount;
 use Gocanto\Converter\RoundedNumber;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -72,6 +72,6 @@ class RoundedNumberTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        RoundedNumber::make(new Price(10, 'SGD'));
+        RoundedNumber::make(new Amount(10, 'SGD'));
     }
 }
